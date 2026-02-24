@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EcoStrava — Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <div class="brand">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <circle cx="12" cy="12" r="10" stroke="#8BC34A" stroke-width="1.2" fill="rgba(139,195,74,0.06)" />
+          <path d="M7 14c1.5-3 4.5-6 7-6" stroke="#8BC34A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-text">EcoStrava</span>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Back</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="auth-wrapper">
+      <div class="auth-card" role="region" aria-label="Login form">
+        <h1 class="auth-title">Welcome back</h1>
+        <div class="auth-sub">Sign in to your account</div>
+
+        <form id="login-form" action="#" method="post">
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input id="email" name="email" type="email" class="form-input" placeholder="name@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <div class="form-row">
+              <label class="form-label" for="password">Password</label>
+              <a href="#" class="forgot">Forgot password?</a>
+            </div>
+            <div class="input-wrap">
+              <input id="password" name="password" type="password" class="form-input" placeholder="••••••••" required>
+              <button type="button" aria-label="Show password" title="Show password" class="eye">
+                <span class="material-icons">visibility</span>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="sign-btn">Sign in</button>
+        </form>
+
+        <div id="form-error" class="form-error" aria-live="polite"></div>
+
+        <div class="small-muted">No account? <a href="register.html" class="create-link">Create one</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <strong>EcoStrava</strong></div>
+      <nav class="footer-nav">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </nav>
+    </div>
+  </footer>
+  
+  <script>
+      // Toggle password visibility and swap material icon + submit form to /api/login
+      (function(){
+        const eye = document.querySelector('.eye');
+        const icon = eye ? eye.querySelector('.material-icons') : null;
+        const pwd = document.getElementById('password');
+        if(eye && pwd && icon){
+          eye.addEventListener('click', ()=>{
+            const showing = pwd.type === 'text';
+            pwd.type = showing ? 'password' : 'text';
+            icon.textContent = showing ? 'visibility' : 'visibility_off';
+          });
+        }
+
+        const form = document.getElementById('login-form');
+        const errorBox = document.getElementById('form-error');
+        if(!form) return;
+        form.addEventListener('submit', async (e)=>{
+          e.preventDefault();
+          errorBox.style.display = 'none';
+          const email = document.getElementById('email').value.trim();
+          const password = pwd.value;
+          try{
+            const res = await fetch('/api/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, password })
+            });
+            const data = await res.json();
+            if(!res.ok){
+              errorBox.textContent = data.error || 'Errore durante il login';
+              errorBox.style.display = 'block';
+              return;
+            }
+            // successo: reindirizza alla dashboard
+            window.location.href = 'dashboard.html';
+          }catch(err){
+            errorBox.textContent = 'Errore di rete';
+            errorBox.style.display = 'block';
+          }
+        });
+        })();
+      </script>
+</body>
+</html>

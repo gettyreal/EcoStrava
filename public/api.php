@@ -46,10 +46,11 @@ switch (true) {
     case $method === 'GET' && $uri === '/api/stats':
         //$dashboardController->stats();
         break;
-
     default:
-        http_response_code(404);
-        echo json_encode(["error" => "Endpoint non trovato"]);
+        // Redirect to user-friendly 404 page instead of returning JSON
+        http_response_code(302);
+        header('Location: /404.html');
+        exit;
 }
 
 function requireAuth()
