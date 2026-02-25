@@ -1,4 +1,10 @@
 RewriteEngine On
+RewriteRule ^$ /views/index.html [L]
+
+RewriteCond %{REQUEST_URI} ^/api
+RewriteRule ^ api.php [QSA,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ api.php [QSA,L]
+
+RewriteRule ^ /views/404.html [L]
