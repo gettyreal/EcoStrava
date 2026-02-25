@@ -6,18 +6,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>404 — Page not Found - EcoStrava</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
       <div class="brand">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
-          <circle cx="12" cy="12" r="10" stroke="#8BC34A" stroke-width="1.5" fill="rgba(139,195,74,0.06)" />
-          <path d="M7 14c1.5-3 4.5-6 7-6" stroke="#8BC34A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <i data-lucide="activity" class="brand-icon icon-accent-green" aria-hidden style="color: var(--accent-green); width:36px; height:36px;"></i>
         <span class="brand-text">EcoStrava</span>
       </div>
     </div>
@@ -31,13 +26,16 @@
           <h2 class="hero404-title">The page you are looking for might have been moved or doesn't exist.</h2>
           
           <div class="hero404-ctas">
-            <a href="index.html" class="btn btn-primary large"><span class="material-icons-outlined">home</span>Go Home</a>
+            <a href="index.html" class="btn btn-primary large"><i data-lucide="home" style="width:18px;height:18px;vertical-align:middle;margin-right:8px"></i>Go Home</a>
           </div>
         </div>
       </div>
     </section>
   </main>
-
+</body>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
+</html>
   <footer class="site-footer">
     <div class="container footer-inner">
       <div>© <strong>EcoStrava</strong></div>

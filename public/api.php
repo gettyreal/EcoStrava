@@ -31,6 +31,9 @@ switch (true) {
     case $method === 'POST' && $uri === '/api/logout':
         $authController->logout();
         break;
+    case $method === 'GET' && $uri === '/api/session':
+        $authController->session();
+        break;
     case $method === 'GET' && $uri === '/api/activities':
         $activityController->index();
         break;

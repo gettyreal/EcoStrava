@@ -79,6 +79,23 @@ main {
     color: var(--text)
 }
 
+/* Icon font helpers (using lucide CSS icon font). Use classes like `icon-user`, `icon-home`, `icon-activity` */
+.icon, .brand-icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+
+.brand-icon { width: 36px; height: 36px }
+
+.user-avatar { width: 28px; height: 28px }
+
+.icon-accent-green { color: var(--accent-green) }
+.icon-blue { color: #4A90E2 }
+.icon-teal { color: #20B2AA }
+.icon-green { color: #8BC34A }
+
 .main-nav {
     display: flex;
     align-items: center;
@@ -396,6 +413,136 @@ main {
     text-decoration: none;
     margin-left: 16px;
     transition: transform .15s ease, color .12s ease;
+}
+
+/* User dropdown styles */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Ensure the dropdown captures pointer events and sits above other layers */
+.user-dropdown {
+    z-index: 2000;
+    pointer-events: auto;
+}
+
+.user-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.04);
+    padding: 8px;
+    border-radius: 12px;
+    width: 42px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-avatar svg {
+    width: 18px;
+    height: 18px;
+    stroke: rgba(255,255,255,0.9);
+    fill: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: rgba(17,31,45,0.95);
+    border: 1px solid rgba(255,255,255,0.03);
+    border-radius: 10px;
+    min-width: 220px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+    color: var(--text);
+    z-index: 1200;
+}
+
+.dropdown-menu, .dropdown-item {
+    pointer-events: auto;
+}
+
+.menu-header {
+    margin: 6px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    border-radius: 8px;
+    transition: background-color .14s ease, color .12s ease;
+}
+
+.menu-header:hover {
+    background: rgba(255,255,255,0.02);
+}
+
+.menu-email {
+    display: block;
+    margin-top: 6px;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.dropdown-item {
+    text-align: left;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: block;
+    margin: 6px;
+    padding: 10px 12px;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color .14s ease, color .12s ease;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background: rgba(255,255,255,0.02);
+}
+
+/* Ensure the logout button (which is a <button>) visually matches links */
+.dropdown-item.logout {
+    width: 95%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 6px;
+    padding: 10px 12px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.dropdown-item.logout:hover {
+    background: rgba(255,255,255,0.02);
+}
+
+.dropdown-item.logout:focus {
+    outline: none;
+}
+
+.divider {
+    height: 1px;
+    background: rgba(255,255,255,0.03);
+    margin: 8px 0px;
+    border-radius: 1px;
 }
 
 /* Login page specific styles (moved from login.html) */

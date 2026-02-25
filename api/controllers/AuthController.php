@@ -75,4 +75,28 @@ class AuthController
 
         echo json_encode(["message" => "Logout effettuato"]);
     }
+
+    public function session()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            echo json_encode(["logged" => false]);
+            return;
+        }
+
+        try {
+            $user = $this->userRepo->findById((int)$_SESSION['user_id']);
+        } catch (Exception $e) {
+            echo json_encode(["logged" => false]);
+            return;
+        }
+
+        echo json_encode([
+            "logged" => true,
+            "user" => [
+                "id" => $user->getId(),
+                "username" => $user->getUsername(),
+                "email" => $user->getEmail()->value()
+            ]
+        ]);
+    }
 }
