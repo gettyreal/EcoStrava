@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     wrapper.innerHTML = `
       <button id="user-btn" class="user-btn" aria-expanded="false" aria-haspopup="true">
-        <i data-lucide="user" class="user-avatar" aria-hidden style="width:20px;color:var(--text)"></i>
+        <i data-lucide="user" class="user-avatar" aria-hidden></i>
       </button>
       <div id="user-menu" class="dropdown-menu" role="menu" aria-hidden="true">
         <div class="menu-header">
